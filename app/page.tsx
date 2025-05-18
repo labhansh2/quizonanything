@@ -1,5 +1,5 @@
-import Link from "next/link";
-import styles from "./page.module.css";
+import Link from 'next/link';
+import styles from './page.module.css';
 
 // BASE PAGE FOR NOW
 // TO DO : Add a good landing page later
@@ -15,14 +15,14 @@ export default function Home() {
         </div>
 
         <div className={styles.buttonSection}>
-          <Link href="/">
+          <Link href="/auth">
             <button className={styles.button}>Get Started</button>
           </Link>
 
           <div className={styles.loginText}>
             <p>
-              Already using quizonanything?{" "}
-              <Link href="/" className={styles.loginLink}>
+              Already using quizonanything?{' '}
+              <Link href="/auth?mode=login" className={styles.loginLink}>
                 Log in
               </Link>
             </p>

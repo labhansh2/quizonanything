@@ -1,17 +1,17 @@
-import type React from "react";
-import { DM_Sans } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import type React from 'react';
+import { DM_Sans } from 'next/font/google';
+import './globals.css';
+import { ThemeProvider } from '@/components/theme-provider';
 
-const dmSans = DM_Sans({ subsets: ["latin"] });
+const dmSans = DM_Sans({ subsets: ['latin'] });
 
 export const metadata = {
-  title: "quizonanything",
-  description: "Take quizzes on any topic with our adaptive quiz application",
+  title: 'quizonanything',
+  description: 'Take quizzes on any topic with our adaptive quiz application'
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {

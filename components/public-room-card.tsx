@@ -1,4 +1,6 @@
 import React from 'react';
+import Image from 'next/image';
+import { Styles } from './types';
 
 interface PublicRoom {
   id: string;
@@ -13,15 +15,25 @@ interface PublicRoom {
 
 interface PublicRoomCardProps {
   room: PublicRoom;
-  styles: any;
+  styles: Styles;
   onJoinRoom: (roomId: string) => void;
 }
 
-const PublicRoomCard: React.FC<PublicRoomCardProps> = ({ room, styles, onJoinRoom }) => {
+const PublicRoomCard: React.FC<PublicRoomCardProps> = ({
+  room,
+  styles,
+  onJoinRoom
+}) => {
   return (
     <div className={styles.roomCard} onClick={() => onJoinRoom(room.id)}>
       <div className={styles.roomImageContainer}>
-        <img src={room.image || "/placeholder.svg"} alt={room.name} className={styles.roomImage} />
+        <Image
+          src={room.image || '/placeholder.svg'}
+          alt={room.name}
+          className={styles.roomImage}
+          width={300}
+          height={300}
+        />
         <div className={styles.roomParticipants}>
           <span className={styles.participantsIcon}>
             <svg
@@ -53,4 +65,4 @@ const PublicRoomCard: React.FC<PublicRoomCardProps> = ({ room, styles, onJoinRoo
   );
 };
 
-export default PublicRoomCard; 
+export default PublicRoomCard;

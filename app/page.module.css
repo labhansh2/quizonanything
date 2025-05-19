@@ -182,7 +182,7 @@
 
 .toggleSlider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 0.875rem;
   width: 0.875rem;
   left: 0.1875rem;

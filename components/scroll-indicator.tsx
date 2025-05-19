@@ -1,8 +1,9 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
+import { Styles } from './types';
 
 interface ScrollIndicatorProps {
-  styles: any;
+  styles: Styles;
 }
 
 const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({ styles }) => {
@@ -14,4 +15,4 @@ const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({ styles }) => {
   );
 };
 
-export default ScrollIndicator; 
+export default ScrollIndicator;

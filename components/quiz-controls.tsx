@@ -1,4 +1,5 @@
 import React from 'react';
+import { Styles } from './types';
 
 interface QuizMode {
   id: string;
@@ -15,7 +16,7 @@ interface QuizControlsProps {
   difficulty: string;
   isPublic: boolean;
   dropdownOpen: string | null;
-  styles: any;
+  styles: Styles;
   onModeSelect: (mode: string) => void;
   onDifficultySelect: (level: string) => void;
   onToggleDropdown: (dropdown: string) => void;
@@ -37,23 +38,36 @@ const QuizControls: React.FC<QuizControlsProps> = ({
   onTogglePublic,
   onStartQuiz,
   quizModes,
-  difficultyLevels,
+  difficultyLevels
 }) => {
   const getCurrentModeLabel = () => {
-    return quizModes.find((mode) => mode.id === quizMode)?.label || "Trivia";
+    return quizModes.find(mode => mode.id === quizMode)?.label || 'Trivia';
   };
 
   const getCurrentDifficultyLabel = () => {
-    return difficultyLevels.find((level) => level.id === difficulty)?.label || "Medium";
+    return (
+      difficultyLevels.find(level => level.id === difficulty)?.label || 'Medium'
+    );
   };
 
   return (
     <div className={styles.controlsWrapper}>
-      <div className={`${styles.dropdownContainer} ${dropdownOpen === "mode" ? styles.dropdownOpen : ""}`}>
-        <button className={styles.dropdownButton} onClick={() => onToggleDropdown("mode")}>
+      <div
+        className={`${styles.dropdownContainer} ${dropdownOpen === 'mode' ? styles.dropdownOpen : ''}`}
+      >
+        <button
+          className={styles.dropdownButton}
+          onClick={() => onToggleDropdown('mode')}
+        >
           <span>{getCurrentModeLabel()}</span>
           <span className={styles.dropdownIcon}>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M2.5 4.5L6 8L9.5 4.5"
                 stroke="currentColor"
@@ -65,10 +79,10 @@ const QuizControls: React.FC<QuizControlsProps> = ({
           </span>
         </button>
         <div className={styles.dropdownMenu}>
-          {quizModes.map((mode) => (
+          {quizModes.map(mode => (
             <button
               key={mode.id}
-              className={`${styles.dropdownItem} ${quizMode === mode.id ? styles.dropdownItemActive : ""}`}
+              className={`${styles.dropdownItem} ${quizMode === mode.id ? styles.dropdownItemActive : ''}`}
               onClick={() => onModeSelect(mode.id)}
             >
               {mode.label}
@@ -77,11 +91,22 @@ const QuizControls: React.FC<QuizControlsProps> = ({
         </div>
       </div>
 
-      <div className={`${styles.dropdownContainer} ${dropdownOpen === "difficulty" ? styles.dropdownOpen : ""}`}>
-        <button className={styles.dropdownButton} onClick={() => onToggleDropdown("difficulty")}>
+      <div
+        className={`${styles.dropdownContainer} ${dropdownOpen === 'difficulty' ? styles.dropdownOpen : ''}`}
+      >
+        <button
+          className={styles.dropdownButton}
+          onClick={() => onToggleDropdown('difficulty')}
+        >
           <span>{getCurrentDifficultyLabel()}</span>
           <span className={styles.dropdownIcon}>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M2.5 4.5L6 8L9.5 4.5"
                 stroke="currentColor"
@@ -93,10 +118,10 @@ const QuizControls: React.FC<QuizControlsProps> = ({
           </span>
         </button>
         <div className={styles.dropdownMenu}>
-          {difficultyLevels.map((level) => (
+          {difficultyLevels.map(level => (
             <button
               key={level.id}
-              className={`${styles.dropdownItem} ${difficulty === level.id ? styles.dropdownItemActive : ""}`}
+              className={`${styles.dropdownItem} ${difficulty === level.id ? styles.dropdownItemActive : ''}`}
               onClick={() => onDifficultySelect(level.id)}
             >
               {level.label}
@@ -114,7 +139,9 @@ const QuizControls: React.FC<QuizControlsProps> = ({
             className={styles.toggleInput}
           />
           <span className={styles.toggleSlider}></span>
-          <span className={styles.toggleText}>{isPublic ? "Public" : "Private"}</span>
+          <span className={styles.toggleText}>
+            {isPublic ? 'Public' : 'Private'}
+          </span>
         </label>
       </div>
 
@@ -125,4 +152,4 @@ const QuizControls: React.FC<QuizControlsProps> = ({
   );
 };
 
-export default QuizControls; 
+export default QuizControls;

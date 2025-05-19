@@ -1,77 +1,410 @@
-.main {
-  display: flex;
+.container {
   min-height: 100vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
   background-color: var(--background);
+  color: var(--foreground);
+  position: relative;
+}
+
+.signOutButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s ease;
+  z-index: 10;
+}
+
+.signOutButton:hover {
   color: var(--foreground);
 }
 
-.container {
-  width: 100%;
-  max-width: 28rem;
+.main {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  align-items: center;
 }
 
-.titleSection {
+/* Hero Section */
+.heroSection {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem 1rem;
+}
+
+.promptContainer {
+  max-width: 36rem;
+  width: 100%;
   text-align: center;
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: -0.025em;
-  color: var(--primary);
+  margin-bottom: 2rem;
 }
 
-.subtitle {
-  margin-top: 0.75rem;
-  color: var(--muted-foreground);
+.promptWrapper {
+  position: relative;
+  margin-bottom: 2rem;
 }
 
-.buttonSection {
-  margin-top: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.button {
+.promptInput {
   width: 100%;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--secondary);
-  color: var(--secondary-foreground);
+  height: 3.5rem;
+  padding: 0 1rem;
+  background-color: var(--input);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  font-weight: 500;
+  color: var(--foreground);
+  font-size: 1.125rem;
+}
+
+.promptInput:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.controlsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.dropdownContainer {
+  position: relative;
+  width: 8rem;
+}
+
+.dropdownButton {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--foreground);
   cursor: pointer;
+  font-size: 0.875rem;
   transition: all 0.2s ease;
 }
 
-.button:hover {
+.dropdownButton:hover {
+  border-color: var(--muted);
+}
+
+.dropdownIcon {
+  color: var(--muted-foreground);
+  transition: transform 0.2s ease;
+}
+
+.dropdownOpen .dropdownIcon {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  width: 100%;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  z-index: 10;
+  display: none;
+}
+
+.dropdownOpen .dropdownMenu {
+  display: block;
+}
+
+.dropdownItem {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  background: none;
+  border: none;
+  width: 100%;
+  color: var(--foreground);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdownItem:hover {
   background-color: var(--accent);
 }
 
-.button:active {
+.dropdownItemActive {
+  background-color: var(--accent);
+}
+
+.toggleContainer {
+  display: flex;
+  align-items: center;
+}
+
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggleInput {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggleSlider {
+  position: relative;
+  display: inline-block;
+  width: 2.5rem;
+  height: 1.25rem;
+  background-color: var(--input);
+  border-radius: 1rem;
+  margin-right: 0.5rem;
+  transition: 0.2s;
+}
+
+.toggleSlider:before {
+  position: absolute;
+  content: "";
+  height: 0.875rem;
+  width: 0.875rem;
+  left: 0.1875rem;
+  bottom: 0.1875rem;
+  background-color: var(--foreground);
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.toggleInput:checked + .toggleSlider {
+  background-color: var(--primary);
+}
+
+.toggleInput:checked + .toggleSlider:before {
+  transform: translateX(1.25rem);
+}
+
+.toggleText {
+  font-size: 0.875rem;
+  min-width: 3.5rem;
+}
+
+.startButton {
+  height: 2.5rem;
+  padding: 0 1rem;
+  background-color: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--foreground);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  flex-grow: 1;
+}
+
+.startButton:hover {
+  background-color: var(--accent);
+  border-color: var(--primary);
+}
+
+.startButton:active {
   border-color: var(--primary);
   box-shadow: 0 0 0 1px var(--primary);
 }
 
-.loginText {
-  text-align: center;
-  font-size: 0.875rem;
+.topicsHeading {
   color: var(--muted-foreground);
+  margin-bottom: 1.5rem;
 }
 
-.loginLink {
+.topicsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.topicButton {
+  padding: 0.375rem 0.75rem;
+  background-color: var(--input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  color: var(--foreground);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.topicButton:hover {
+  background-color: var(--accent);
+}
+
+.topicButton:active {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+/* Scroll Indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--muted-foreground);
+  animation: bounce 2s infinite;
+}
+
+.scrollArrow {
+  margin-top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Public Rooms Section */
+.publicRoomsSection {
+  width: 100%;
+  padding: 4rem 1rem;
+  background-color: var(--background);
+}
+
+.publicRoomsTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.roomsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.roomCard {
+  background-color: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.roomCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.roomImageContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* 1:1 Aspect Ratio */
+  overflow: hidden;
+}
+
+.roomImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.roomCard:hover .roomImage {
+  transform: scale(1.05);
+}
+
+.roomParticipants {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.participantsIcon {
+  display: flex;
+  align-items: center;
+}
+
+.roomInfo {
+  padding: 1rem;
+}
+
+.roomName {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.roomTopic {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.roomCreator {
+  font-size: 0.75rem;
   color: var(--primary);
-  transition: color 0.2s ease;
 }
 
-.loginLink:hover {
-  color: var(--primary-hover);
+@media (max-width: 640px) {
+  .controlsWrapper {
+    flex-direction: column;
+  }
+
+  .dropdownContainer {
+    width: 100%;
+  }
+
+  .toggleContainer {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
 }

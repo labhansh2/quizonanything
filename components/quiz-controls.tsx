@@ -14,13 +14,11 @@ interface DifficultyLevel {
 interface QuizControlsProps {
   quizMode: string;
   difficulty: string;
-  isPublic: boolean;
   dropdownOpen: string | null;
   styles: Styles;
   onModeSelect: (mode: string) => void;
   onDifficultySelect: (level: string) => void;
   onToggleDropdown: (dropdown: string) => void;
-  onTogglePublic: () => void;
   onStartQuiz: () => void;
   quizModes: QuizMode[];
   difficultyLevels: DifficultyLevel[];
@@ -29,13 +27,11 @@ interface QuizControlsProps {
 const QuizControls: React.FC<QuizControlsProps> = ({
   quizMode,
   difficulty,
-  isPublic,
   dropdownOpen,
   styles,
   onModeSelect,
   onDifficultySelect,
   onToggleDropdown,
-  onTogglePublic,
   onStartQuiz,
   quizModes,
   difficultyLevels
@@ -130,6 +126,7 @@ const QuizControls: React.FC<QuizControlsProps> = ({
         </div>
       </div>
 
+      {/* Public/Private Toggle commented out
       <div className={styles.toggleContainer}>
         <label className={styles.toggleLabel}>
           <input
@@ -144,6 +141,7 @@ const QuizControls: React.FC<QuizControlsProps> = ({
           </span>
         </label>
       </div>
+      */}
 
       <button onClick={onStartQuiz} className={styles.startButton}>
         Create Quiz

@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
-import UsernameModal from '@/components/username-modal';
+// import UsernameModal from '@/components/username-modal';
 import TopicSuggestions from '@/components/topic-suggestions';
 import QuizControls from '@/components/quiz-controls';
-import PublicRoomCard from '@/components/public-room-card';
-import ScrollIndicator from '@/components/scroll-indicator';
+// import PublicRoomCard from '@/components/public-room-card';
+// import ScrollIndicator from '@/components/scroll-indicator';
 
 // Sample topic suggestions
 const TOPIC_SUGGESTIONS = [
@@ -38,6 +38,7 @@ const DIFFICULTY_LEVELS = [
 ];
 
 // Sample room images
+/* Commented out to fix unused variable warning
 const ROOM_IMAGES = [
   'https://picsum.photos/id/237/300/300',
   'https://picsum.photos/id/24/300/300',
@@ -46,8 +47,10 @@ const ROOM_IMAGES = [
   'https://picsum.photos/id/129/300/300',
   'https://picsum.photos/id/169/300/300'
 ];
+*/
 
 // Sample public quiz rooms
+/* Commented out to fix unused variable warning
 const PUBLIC_QUIZ_ROOMS = [
   {
     id: 'room1',
@@ -90,6 +93,7 @@ const PUBLIC_QUIZ_ROOMS = [
     image: ROOM_IMAGES[3]
   }
 ];
+*/
 
 export default function HomePage() {
   const [searchTopic, setSearchTopic] = useState('');
@@ -100,9 +104,17 @@ export default function HomePage() {
   const router = useRouter();
 
   const handleStartQuiz = () => {
-    const roomId =
-      Date.now().toString(36) + Math.random().toString(36).substring(2);
-    router.push(`/quiz/room/${roomId}`);
+    if (!searchTopic.trim()) {
+      alert('Please enter a topic for your quiz');
+      return;
+    }
+    
+    const roomId = Date.now().toString(36) + Math.random().toString(36).substring(2);
+    
+    // Redirect to loading page with query parameters
+    router.push(
+      `/loading?roomId=${roomId}&topic=${encodeURIComponent(searchTopic)}&mode=${quizMode}&difficulty=${difficulty}&public=${isPublic}`
+    );
   };
 
   const handleTopicSelect = (topic: string) => {
@@ -127,23 +139,25 @@ export default function HomePage() {
     setDropdownOpen(null);
   };
 
-  const handleJoinRoom = (roomId: string) => {
-    router.push(`/quiz/room/${roomId}`);
-  };
+  // const handleJoinRoom = (roomId: string) => {
+  //   router.push(`/quiz/room/${roomId}`);
+  // };
 
-  const handleSignOut = () => {
-    localStorage.removeItem('quizmaster_user_id');
-    localStorage.removeItem('quizmaster_username');
-    window.location.reload();
-  };
+  // const handleSignOut = () => {
+  //   localStorage.removeItem('quizmaster_user_id');
+  //   localStorage.removeItem('quizmaster_username');
+  //   window.location.reload();
+  // };
 
   return (
     <div className={styles.container}>
+      {/* Username Modal commented out
       <UsernameModal onComplete={() => {}} />
+      */}
 
-      <button onClick={handleSignOut} className={styles.signOutButton}>
+      {/* <button onClick={handleSignOut} className={styles.signOutButton}>
         Sign Out
-      </button>
+      </button> */}
 
       <main className={styles.main}>
         <section className={styles.heroSection}>
@@ -162,13 +176,11 @@ export default function HomePage() {
               <QuizControls
                 quizMode={quizMode}
                 difficulty={difficulty}
-                isPublic={isPublic}
                 dropdownOpen={dropdownOpen}
                 styles={styles}
                 onModeSelect={handleModeSelect}
                 onDifficultySelect={handleDifficultySelect}
                 onToggleDropdown={toggleDropdown}
-                onTogglePublic={() => setIsPublic(!isPublic)}
                 onStartQuiz={handleStartQuiz}
                 quizModes={QUIZ_MODES}
                 difficultyLevels={DIFFICULTY_LEVELS}
@@ -182,9 +194,10 @@ export default function HomePage() {
             />
           </div>
 
-          <ScrollIndicator styles={styles} />
+          {/* <ScrollIndicator styles={styles} /> */}
         </section>
 
+        {/* Public Rooms Section commented out
         <section className={styles.publicRoomsSection}>
           <h2 className={styles.publicRoomsTitle}>Public Quiz Rooms</h2>
 
@@ -199,6 +212,7 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+        */}
       </main>
     </div>
   );

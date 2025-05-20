@@ -162,7 +162,7 @@ export default function HomePage() {
       <main className={styles.main}>
         <section className={styles.heroSection}>
           <div className={styles.promptContainer}>
-            <h2 className={styles.title}>Create a Quiz Room</h2>
+            <h2 className={styles.title}>Create a Quiz</h2>
 
             <div className={styles.promptWrapper}>
               <input

@@ -1,11 +1,15 @@
 # QuizOnAnything
 
-<div style="display: flex; align-items: center;">
-  <img src="./public/q-nobg.png" alt="QuizOnAnything Logo" width="100" style="margin-right: 20px;" />
-  <div>
-    QuizOnAnything is a dynamic quiz application that allows users to create and participate in quizzes on any topic. The app leverages OpenAI's API to generate quiz questions based on user-defined topics, modes, and difficulty levels.
-  </div>
-</div>
+<table>
+<tr>
+<td width="150">
+<img src="./public/q-nobg.png" width="100">
+</td>
+<td>
+QuizOnAnything is a dynamic quiz application that allows users to create and participate in quizzes on any topic. The app leverages OpenAI's API to generate quiz questions based on user-defined topics, modes, and difficulty levels.
+</td>
+</tr>
+</table>
 
 ## Features
 
@@ -20,13 +24,13 @@
   - **Hard**: Advanced knowledge, challenging questions.
 - **Responsive Design**: Optimized for both desktop and mobile devices.
 
-<img src="./public/homepage-screenshot.png" alt="Homepage Screenshot" width="600" style="display: block; margin: 20px auto;" />
+![Homepage Screenshot](./public/homepage-screenshot.png)
 
 ## Installation
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/quizonanything.git
+   git clone https://github.com/labhansh2/quizonanything.git
    cd quizonanything
    ```
 
